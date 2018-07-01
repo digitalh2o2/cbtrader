@@ -9,7 +9,7 @@ require("./services/passport");
 const authRoutes = require("./routes/authRoutes");
 
 mongoose.connect(
-  keys.mongoUri,
+  keys.mongoURI,
   () => {
     console.log("Connected to database!");
   }
