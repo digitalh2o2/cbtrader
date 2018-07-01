@@ -20,7 +20,8 @@ passport.use(
     {
       clientID: keys.discordClientID,
       clientSecret: keys.discordClientSecret,
-      callbackURL: "/api/discord/callback"
+      callbackURL: "/api/discord/callback",
+      proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ discordId: profile.id }).then(existingUser => {
