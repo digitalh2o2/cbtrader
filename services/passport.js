@@ -5,6 +5,16 @@ const keys = require("../config/keys");
 
 const User = mongoose.model("users");
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
+
 passport.use(
   new DiscordStrategy(
     {
@@ -13,11 +23,17 @@ passport.use(
       callbackURL: "/api/discord/callback"
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(accessToken);
-      console.log("profile", profile);
-      new User({
-        discordId: profile.id
-      }).save();
+      User.findOne({ discordId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          done(null, existingUser);
+        } else {
+          new User({
+            discordId: profile.id
+          })
+            .save()
+            .then(user => done(null, user));
+        }
+      });
     }
   )
 );
