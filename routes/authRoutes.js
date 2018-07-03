@@ -9,7 +9,7 @@ module.exports = app => {
     })
   );
 
-  app.get("/api/discord/callback", passport.authenticate("discord"));
+  app.get("/auth/discord/callback", passport.authenticate("discord"));
 
   app.get("/api/logout", (req, res) => {
     req.logout();

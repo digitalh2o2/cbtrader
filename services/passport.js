@@ -20,7 +20,7 @@ passport.use(
     {
       clientID: keys.discordClientID,
       clientSecret: keys.discordClientSecret,
-      callbackURL: "/api/discord/callback",
+      callbackURL: "/auth/discord/callback",
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
