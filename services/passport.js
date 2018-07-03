@@ -23,18 +23,15 @@ passport.use(
       callbackURL: "/api/discord/callback",
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ discordId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser);
-        } else {
-          new User({
-            discordId: profile.id
-          })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ discordId: profile.id });
+
+      if (existingUser) {
+        done(null, existingUser);
+      } else {
+        const user = await new User({ discordId: profile.id }).save();
+        done(null, user);
+      }
     }
   )
 );
