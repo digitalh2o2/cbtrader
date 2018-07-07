@@ -9,16 +9,19 @@ class Header extends Component {
         return;
       case false:
         return (
-          <li>
+          <li className="button is-warning navbar-item">
             <a href="/auth/discord">Log In With Discord</a>
           </li>
         );
       default:
         return [
-          <li key="1">
+          <li
+            className=" button is-success navbar-item"
+            style={{ marginRight: "5px" }}
+          >
             <a href="/marketplace">Marketplace</a>
           </li>,
-          <li key="2">
+          <li className="button is-success navbar-item ">
             <a href="/api/logout">Logout</a>
           </li>
         ];
@@ -33,7 +36,7 @@ class Header extends Component {
   render() {
     console.log("thiiiis", this.props);
     return (
-      <nav className="navbar is-dark" aria-label="main navigation">
+      <nav className="navbar is-info" aria-label="main navigation">
         <div className="navbar-brand">
           <div className="navbar-item">
             <Link to={this.props.auth ? "/marketplace" : "/"}>BT</Link>
@@ -51,8 +54,10 @@ class Header extends Component {
         </div>
         <div className="navbar-menu nav-toggle">
           <div className="navbar-end">
-            <div className="navbar-item is-active">
-              <ul>{this.renderUserOptions()}</ul>
+            <div className="is-active">
+              <ul style={{ display: "flex", padding: "5px" }}>
+                {this.renderUserOptions()}
+              </ul>
             </div>
           </div>
         </div>

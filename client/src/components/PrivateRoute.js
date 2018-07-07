@@ -17,8 +17,7 @@ const PrivateRoute = ({ component: Component, auth: auth, ...rest }) => (
   />
 );
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(mapStateToProps)(PrivateRoute);
