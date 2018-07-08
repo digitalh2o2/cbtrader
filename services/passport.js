@@ -29,7 +29,12 @@ passport.use(
       if (existingUser) {
         done(null, existingUser);
       } else {
-        const user = await new User({ discordId: profile.id }).save();
+        const user = await new User({
+          discordId: profile.id,
+          discordUsername: profile.username,
+          discordDiscriminator: profile.discriminator,
+          discordEmail: profile.email
+        }).save();
         done(null, user);
       }
     }
