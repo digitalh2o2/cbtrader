@@ -21,6 +21,12 @@ class Header extends Component {
           >
             <a href="/marketplace">Marketplace</a>
           </li>,
+           <li
+           className=" button is-success navbar-item"
+           style={{ marginRight: "5px" }}
+         >
+           <a href="/new">New Listing</a>
+         </li>,
           <li className="button is-success navbar-item ">
             <a href="/api/logout">Logout</a>
           </li>
