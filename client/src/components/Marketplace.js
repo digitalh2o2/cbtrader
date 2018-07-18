@@ -18,7 +18,12 @@ class MarketPlace extends Component {
               placeholder="Search for pokemon"
               style={{ width: "50%" }}
             />{" "}
-            <button className="button is-danger">Search</button>
+            <button className="button is-danger">
+              <span className="icon is-small">
+                <i className="fas fa-search" />
+              </span>
+              <span>Search</span>
+            </button>
           </div>
         </div>
       </div>

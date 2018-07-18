@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Redirect, Route, withRouter } from "react-router-dom";
+import React from "react";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 const PrivateRoute = ({ component: Component, auth: auth, ...rest }) => (

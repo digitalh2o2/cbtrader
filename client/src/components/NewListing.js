@@ -8,9 +8,9 @@ class NewListing extends Component {
         <div className="has-text-centered">
           <h1 className="title">List Your Pokemon</h1>
         </div>
-
+        <br />
         <div style={styles.formStyle}>
-          <form>
+          <form className="box">
             <div className="field">
               <div className="control">
                 <label className="label">Pokemon Name</label>
@@ -47,7 +47,10 @@ class NewListing extends Component {
               </div>
             </div>
             <button type="submit" className="button is-danger">
-              Submit
+              <span className="icon is-small">
+                <i className="fas fa-check" />
+              </span>
+              <span>Save</span>
             </button>
           </form>
         </div>
@@ -59,7 +62,8 @@ class NewListing extends Component {
 const styles = {
   formStyle: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: "100%"
   }
 };
 

@@ -16,18 +16,20 @@ class Header extends Component {
       default:
         return [
           <li
-            className=" button is-success navbar-item"
+            key="1"
+            className=" button is-warning navbar-item"
             style={{ marginRight: "5px" }}
           >
             <a href="/marketplace">Marketplace</a>
           </li>,
-           <li
-           className=" button is-success navbar-item"
-           style={{ marginRight: "5px" }}
-         >
-           <a href="/new">New Listing</a>
-         </li>,
-          <li className="button is-success navbar-item ">
+          <li
+            key="2"
+            className=" button is-warning navbar-item"
+            style={{ marginRight: "5px" }}
+          >
+            <a href="/new">New Listing</a>
+          </li>,
+          <li key="3" className="button is-warning navbar-item ">
             <a href="/api/logout">Logout</a>
           </li>
         ];
