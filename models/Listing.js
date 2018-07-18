@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const listingSchema = new Schema({
   pokemonName: String,
-  pokemonIv: String,
+  pokemonLevel: String,
   pokemonOrigin: String
 })
 
