@@ -5,7 +5,7 @@ const listingSchema = new Schema({
   pokemonName: String,
   pokemonLevel: String,
   pokemonOrigin: String,
-  _user: { type: Scehma.Types.ObjectId, ref: "User" },
+  _user: { type: Schema.Types.ObjectId, ref: "User" },
   datePosted: Date
 });
 
