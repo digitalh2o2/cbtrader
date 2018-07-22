@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import Autocomplete from "react-autocomplete";
 import * as actions from "../actions";
+import { getPokemon } from "../pokemon";
 
 class NewListing extends Component {
   state = {
@@ -44,12 +46,31 @@ class NewListing extends Component {
               <div className="control">
                 <label className="label">Pokemon Name</label>
 
-                <input
-                  className="input"
-                  placeholder="Enter Pokemon Name"
-                  onChange={this.updateMon}
+                <Autocomplete
+                
+                  getItemValue={(item)=> item.name}
+                  items={getPokemon()}
+                  shouldItemRender={(item, value) =>
+                    item.name
+                      .toLowerCase()
+                      .indexOf(value.toLowerCase()) !== -1
+                  }
+                  renderItem={(item, isHighlighted) => (
+                    <div
+                      style={{
+                        background: isHighlighted ? "lightgray" : "white", zIndex: 9999 
+                      }}
+                    >
+                      {item.name}
+                    </div>
+                  )}
                   id="name"
-                  required
+                  value={this.state.name}
+                  onChange={(e, value) => this.setState({ name: value})}
+                  onSelect={pokemon => this.setState({ name: pokemon })}
+                  menuStyle={{
+                    zIndex: '999'
+                  }}
                 />
               </div>
             </div>
