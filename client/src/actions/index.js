@@ -10,11 +10,12 @@ export const fetchUser = () => async dispatch => {
   });
 };
 
-export const submitListing = listing => async dispatch => {
+export const submitListing = (listing, history) => async dispatch => {
   console.log("ok ok ok", listing);
-  const res = await axios.post("/api/listing", listing);
-  const data = await res
 
+  const res = await axios.post("/api/listing", listing);
+
+  history.push("/marketplace");
   dispatch({
     type: SUBMIT_LISTING,
     payload: res.data

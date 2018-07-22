@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -27,7 +28,7 @@ class NewListing extends Component {
       location
     };
 
-    this.props.submitListing(listing);
+    this.props.submitListing(listing, this.props.history);
   };
   render() {
     console.log("inside the listing", this.props);
@@ -105,4 +106,4 @@ const styles = {
 export default connect(
   null,
   actions
-)(NewListing);
+)(withRouter(NewListing));

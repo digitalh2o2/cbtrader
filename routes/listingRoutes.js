@@ -1,7 +1,11 @@
 module.exports = app => {
-  app.post("/api/listing", (req, res) => {
-    console.log(req.body);
+  app.post("/api/listing", async (req, res) => {
+    try {
+      console.log(req.body);
 
-    res.send({});
+      res.send({})
+    } catch (err) {
+      console.log(err);
+    }
   });
 };
