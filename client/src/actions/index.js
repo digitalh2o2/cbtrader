@@ -18,6 +18,5 @@ export const submitListing = (listing, history) => async dispatch => {
   history.push("/marketplace");
   dispatch({
     type: SUBMIT_LISTING,
-    payload: res.data
   });
 };
