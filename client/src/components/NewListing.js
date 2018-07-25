@@ -51,6 +51,7 @@ class NewListing extends Component {
       <div>
         <div className="has-text-centered">
           <h1 className="title">List Your Pokemon</h1>
+          <small>(that you want to trade)</small>
         </div>
         <br />
         <div style={styles.formStyle}>

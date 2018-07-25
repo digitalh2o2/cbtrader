@@ -10,6 +10,7 @@ module.exports = app => {
       pokemonName: name,
       pokemonLevel: level,
       pokemonOrigin: location,
+      pokemonOwner: req.user.discordUsername,
       _user: req.user.id,
       datePosted: Date.now()
     });
@@ -27,6 +28,7 @@ module.exports = app => {
 
   app.get("/api/listings", async (req, res) => {
     console.log(req.body);
+
     const listings = await Listing.find({});
     console.log(listings);
     res.send(listings);
