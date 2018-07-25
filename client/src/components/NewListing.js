@@ -12,7 +12,8 @@ class NewListing extends Component {
     location: ""
   };
 
-  updateMon = e => {
+  updateMon = (e, value) => {
+  
     this.setState({
       [e.target.id]: e.target.value
     });
@@ -20,17 +21,30 @@ class NewListing extends Component {
     console.log("the state is", this.state);
   };
 
+  checkInput = pokemon => {
+    console.log("inside the check", pokemon);
+    if (getPokemon().some(({ name }) => name === pokemon)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   onSubmit = e => {
     e.preventDefault();
     const { name, level, location } = this.state;
 
-    let listing = {
-      name,
-      level,
-      location
-    };
+    if (this.checkInput(name)) {
+      let listing = {
+        name,
+        level,
+        location
+      };
 
-    this.props.submitListing(listing, this.props.history);
+      this.props.submitListing(listing, this.props.history);
+    } else {
+      alert("Please select Pokemon from list");
+    }
   };
   render() {
     console.log("inside the listing", this.props);
@@ -47,29 +61,35 @@ class NewListing extends Component {
                 <label className="label">Pokemon Name</label>
 
                 <Autocomplete
-                
-                  getItemValue={(item)=> item.name}
+                  getItemValue={item => item.name}
                   items={getPokemon()}
                   shouldItemRender={(item, value) =>
-                    item.name
-                      .toLowerCase()
-                      .indexOf(value.toLowerCase()) !== -1
+                    item.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
                   }
                   renderItem={(item, isHighlighted) => (
                     <div
+                      key={item.name}
                       style={{
-                        background: isHighlighted ? "lightgray" : "white", zIndex: 9999 
+                        background: isHighlighted ? "lightgray" : "white",
+                        zIndex: 9999
                       }}
                     >
                       {item.name}
                     </div>
                   )}
                   id="name"
+                  inputProps={{
+                    className: "input",
+                    placeholder: "Enter Pokemon",
+                    required: true
+                  }}
                   value={this.state.name}
-                  onChange={(e, value) => this.setState({ name: value})}
+                  onChange={(e, value) => this.setState({ name: value })}
                   onSelect={pokemon => this.setState({ name: pokemon })}
                   menuStyle={{
-                    zIndex: '999'
+                    border: "gray",
+                    width: "100%",
+                    zIndex: "999"
                   }}
                 />
               </div>
