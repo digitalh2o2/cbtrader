@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import { fetchListings } from "../actions";
 
 class MarketPlace extends Component {
   componentDidMount() {
-    this.props.fetchListings()
+    this.props.fetchListings();
+  }
+
+  renderListings() {
+    console.log(this.props.listings);
+
+    return this.props.listings.map(listing => {
+      return <div key={listing._id}>{listing.pokemonName}</div>;
+    });
   }
 
   render() {
@@ -31,6 +39,8 @@ class MarketPlace extends Component {
             </button>
           </div>
         </div>
+
+        <div>{this.renderListings()}</div>
       </div>
     );
   }
@@ -42,5 +52,5 @@ function mapStateToProps({ listings }) {
 
 export default connect(
   mapStateToProps,
-  actions
+  { fetchListings }
 )(MarketPlace);

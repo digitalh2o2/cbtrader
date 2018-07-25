@@ -47,7 +47,13 @@ class Header extends Component {
       <nav className="navbar is-info" aria-label="main navigation">
         <div className="navbar-brand">
           <div className="navbar-item">
-            <Link to={this.props.auth ? "/marketplace" : "/"}>BT</Link>
+            {this.props.auth ? (
+              <a href="/marketplace">BT</a>
+            ) : (
+              <a href="https://discord.gg/VpZqQz8" target="_blank">
+                BT
+              </a>
+            )}
           </div>
 
           <span
