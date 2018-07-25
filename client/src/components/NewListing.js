@@ -22,7 +22,6 @@ class NewListing extends Component {
   };
 
   checkInput = pokemon => {
-    console.log("inside the check", pokemon);
     if (getPokemon().some(({ name }) => name === pokemon)) {
       return true;
     } else {
@@ -87,8 +86,6 @@ class NewListing extends Component {
                   onChange={(e, value) => this.setState({ name: value })}
                   onSelect={pokemon => this.setState({ name: pokemon })}
                   menuStyle={{
-                    border: "gray",
-                    width: "100%",
                     zIndex: "999"
                   }}
                 />

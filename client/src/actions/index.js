@@ -1,4 +1,4 @@
-import { FETCH_USER, SUBMIT_LISTING } from "./types";
+import { FETCH_USER, SUBMIT_LISTING, FETCH_LISTINGS } from "./types";
 import axios from "axios";
 
 export const fetchUser = () => async dispatch => {
@@ -17,6 +17,15 @@ export const submitListing = (listing, history) => async dispatch => {
 
   history.push("/marketplace");
   dispatch({
-    type: SUBMIT_LISTING,
+    type: SUBMIT_LISTING
+  });
+};
+
+export const fetchListings = () => async dispatch => {
+  const res = await axios.get("/api/listings");
+  console.log("inside fetch", res);
+  dispatch({
+    type: FETCH_LISTINGS,
+    payload: res.data
   });
 };

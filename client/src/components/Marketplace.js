@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class MarketPlace extends Component {
-  state = {};
+  componentDidMount() {
+    this.props.fetchListings()
+  }
+
   render() {
     console.log("market", this.props);
     return (
@@ -31,4 +36,11 @@ class MarketPlace extends Component {
   }
 }
 
-export default MarketPlace;
+function mapStateToProps({ listings }) {
+  return { listings };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(MarketPlace);
