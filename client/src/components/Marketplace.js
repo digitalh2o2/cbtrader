@@ -11,7 +11,22 @@ class MarketPlace extends Component {
     console.log(this.props.listings);
 
     return this.props.listings.map(listing => {
-      return <div key={listing._id}>{listing.pokemonName}</div>;
+      return (
+        <div
+          className="column is-quarter card"
+          key={listing._id}
+          style={{ marginRight: "15px" }}
+        >
+          <div className="card-content">
+            <p className="subtitle is-6">Owner: {listing.pokemonOwner}</p>
+
+            <p className="subtitle">Pokemon:</p>
+            <p>{listing.pokemonName}</p>
+
+            <p>Date Listed: {new Date(listing.datePosted).toLocaleDateString()}</p>
+          </div>
+        </div>
+      );
     });
   }
 
@@ -40,11 +55,19 @@ class MarketPlace extends Component {
           </div>
         </div>
 
-        <div>{this.renderListings()}</div>
+        <div className="columns is-multiline">{this.renderListings()}</div>
       </div>
     );
   }
 }
+
+const styles = {
+  listingsStyle: {
+    display: "flex",
+
+    flexDirection: "row"
+  }
+};
 
 function mapStateToProps({ listings }) {
   return { listings };
