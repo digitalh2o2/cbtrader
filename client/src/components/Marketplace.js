@@ -8,22 +8,28 @@ class MarketPlace extends Component {
   }
 
   renderListings() {
-    console.log(this.props.listings);
+  
+    let copyMon = [...this.props.listings]
+   
+    copyMon = copyMon.sort((a,b)=> {
+      return b.pokemonName < a.pokemonName
+    })
 
-    return this.props.listings.map(listing => {
+    return copyMon.map(listing => {
       return (
         <div
-          className="column is-quarter card"
+          className="column is-half card "
           key={listing._id}
-          style={{ marginRight: "15px" }}
+          style={styles.cardStyle}
         >
-          <div className="card-content">
-            <p className="subtitle is-6">Owner: {listing.pokemonOwner}</p>
+          <div className="card-content" style={styles.contentStyle}>
+            <p >Owner: {listing.pokemonOwner}</p>
 
-            <p className="subtitle">Pokemon:</p>
-            <p>{listing.pokemonName}</p>
+            <p >Pokemon: {listing.pokemonName}</p>
 
-            <p>Date Listed: {new Date(listing.datePosted).toLocaleDateString()}</p>
+            <p>
+              Date Listed: {new Date(listing.datePosted).toLocaleDateString()}
+            </p>
           </div>
         </div>
       );
@@ -39,7 +45,7 @@ class MarketPlace extends Component {
           <p>Search for pokemon to trade for!</p>
         </div>
 
-        <div className="field">
+        <div className="field" style={{ paddingBottom: "20px" }}>
           <div className="control has-text-centered">
             <input
               className="input is-info"
@@ -62,9 +68,16 @@ class MarketPlace extends Component {
 }
 
 const styles = {
+  cardStyle: {
+    backgroundColor: '#209CEE',
+    color: 'white' 
+  },
+  // contentStyle: {
+  //   color: 'white'
+  // },
   listingsStyle: {
     display: "flex",
-
+    flexWrap: 'wrap',
     flexDirection: "row"
   }
 };
